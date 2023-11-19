@@ -21,5 +21,10 @@ namespace OutlookMockup.Data
         {
             Name = newName;
         }
+
+        public void AddFile(string fileName)
+        {
+            Files.Add(new FileNode(fileName));
+        }
     }
 }

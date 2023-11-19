@@ -62,9 +62,9 @@
             this.kryptonPanelMain = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonSplitContainerMain = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
             this.treeView_Dir = new ComponentFactory.Krypton.Toolkit.KryptonTreeView();
-            this.kryptonManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
-            this.pageContainer_Reader = new ComponentFactory.Krypton.Navigator.KryptonNavigator();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.pageContainer_Reader = new ComponentFactory.Krypton.Navigator.KryptonNavigator();
+            this.kryptonManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -374,14 +374,20 @@
             // 
             this.treeView_Dir.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ContextMenuOuter;
             this.treeView_Dir.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView_Dir.ImageIndex = 0;
+            this.treeView_Dir.ImageList = this.imageList1;
             this.treeView_Dir.Location = new System.Drawing.Point(0, 0);
             this.treeView_Dir.Name = "treeView_Dir";
+            this.treeView_Dir.SelectedImageIndex = 0;
             this.treeView_Dir.Size = new System.Drawing.Size(183, 555);
             this.treeView_Dir.TabIndex = 0;
             // 
-            // kryptonManager
+            // imageList1
             // 
-            this.kryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.ProfessionalSystem;
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Folder.png");
+            this.imageList1.Images.SetKeyName(1, "File.png");
             // 
             // pageContainer_Reader
             // 
@@ -392,11 +398,9 @@
             this.pageContainer_Reader.TabIndex = 1;
             this.pageContainer_Reader.Text = "kryptonNavigator1";
             // 
-            // imageList1
+            // kryptonManager
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.kryptonManager.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.ProfessionalSystem;
             // 
             // MainForm
             // 

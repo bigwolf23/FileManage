@@ -22,6 +22,8 @@ using OutlookMockup.Common;
 using System.Linq;
 using OutlookMockup.Controls;
 using OutlookMockup.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OutlookMockup
 {
@@ -32,8 +34,8 @@ namespace OutlookMockup
         public MainForm()
         {
             InitializeComponent();
-            InitializeContextMenu();
             initialForm();
+            InitializeContextMenu();
         }
 
         private void initialForm()
@@ -41,7 +43,8 @@ namespace OutlookMockup
             kryptonManager.GlobalPaletteMode = PaletteModeManager.ProfessionalSystem;
             treeView_Dir.LabelEdit = true;
             treeView_Dir.AfterLabelEdit += treeView_Dir_AfterLabelEdit;
-            treeView_Dir.AfterSelect += treeView_Dir_AfterSelect;            
+            treeView_Dir.AfterSelect += treeView_Dir_AfterSelect;
+            treeView_Dir.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_Dir_NodeMouseClick);
         }
 
         private void LoadTreeView(string rootPath)
@@ -54,6 +57,8 @@ namespace OutlookMockup
         private KryptonTreeNode CreateTreeNode(FolderNode folderNode)
         {
             var treeNode = new KryptonTreeNode(folderNode.Name);
+            treeNode.ImageIndex = 0;
+            treeNode.SelectedImageIndex = treeNode.ImageIndex;
             treeNode.Tag = folderNode;
             foreach (var subFolder in folderNode.SubFolders)
             {
@@ -64,6 +69,8 @@ namespace OutlookMockup
             {
                 var fileNode = new TreeNode(file.Name);
                 fileNode.Tag = file; // 将 FileNode 与 TreeNode 关联
+                fileNode.ImageIndex = 1;
+                fileNode.SelectedImageIndex = fileNode.ImageIndex;
                 treeNode.Nodes.Add(fileNode);
             }
 
@@ -156,9 +163,14 @@ namespace OutlookMockup
 
         private void treeView_Dir_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            if (e.CancelEdit)
+            if (e.CancelEdit )
             {
                 // 用户取消编辑
+                return;
+            }
+            if (string.IsNullOrEmpty(e.Label))
+            {
+                e.CancelEdit = true;
                 return;
             }
 
@@ -214,27 +226,52 @@ namespace OutlookMockup
 
             return Path.Combine(CurrentDirPath, Path.Combine(pathSegments.ToArray()));
         }
+        private ContextMenuStrip folderContextMenuStrip;
+        private ContextMenuStrip fileContextMenuStrip;
 
-    
         private void InitializeContextMenu()
         {
-            // 创建上下文菜单
-            var contextMenu = new ContextMenuStrip();
+            folderContextMenuStrip = new ContextMenuStrip();
+            ToolStripMenuItem importFilesMenuItem = new ToolStripMenuItem("导入文件");
+            ToolStripMenuItem addFolderMenuItem = new ToolStripMenuItem("新加文件夹");
+            ToolStripMenuItem deleteFolderMenuItem = new ToolStripMenuItem("删除文件夹");
 
-            // 添加菜单项
-            var importFilesMenuItem = new ToolStripMenuItem("导入多个文件");
-            var deleteFilesMenuItem = new ToolStripMenuItem("删除多个文件");
-
-            // 关联菜单项的点击事件处理程序
             importFilesMenuItem.Click += ImportFilesMenuItem_Click;
-            deleteFilesMenuItem.Click += DeleteFilesMenuItem_Click;
+            addFolderMenuItem.Click += AddFolderMenuItem_Click;
+            deleteFolderMenuItem.Click += DeleteFolderMenuItem_Click;
 
-            // 将菜单项添加到上下文菜单
-            contextMenu.Items.Add(importFilesMenuItem);
-            contextMenu.Items.Add(deleteFilesMenuItem);
+            folderContextMenuStrip.Items.Add(importFilesMenuItem);
+            folderContextMenuStrip.Items.Add(addFolderMenuItem);
+            folderContextMenuStrip.Items.Add(deleteFolderMenuItem);
 
-            // 关联上下文菜单到 TreeView
-            treeView_Dir.ContextMenuStrip = contextMenu;
+            fileContextMenuStrip = new ContextMenuStrip();
+            ToolStripMenuItem deleteFileMenuItem = new ToolStripMenuItem("删除文件");
+            deleteFileMenuItem.Click += DeleteFileMenuItem_Click;
+            fileContextMenuStrip.Items.Add(deleteFileMenuItem);
+
+            //treeView_Dir.ContextMenuStrip = folderContextMenuStrip;
+        }
+
+        private void treeView_Dir_NodeMouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                treeView_Dir.SelectedNode = treeView_Dir.GetNodeAt(e.X, e.Y);
+
+                if (treeView_Dir.SelectedNode != null)
+                {
+                    if (treeView_Dir.SelectedNode.Tag is FolderNode)
+                    {
+                        treeView_Dir.ContextMenuStrip = folderContextMenuStrip;
+                    }
+                    else if (treeView_Dir.SelectedNode.Tag is FileNode)
+                    {
+                        treeView_Dir.ContextMenuStrip = fileContextMenuStrip;
+                    }
+
+                    treeView_Dir.ContextMenuStrip.Show(treeView_Dir, e.Location);
+                }
+            }
         }
         private void ImportFilesMenuItem_Click(object sender, EventArgs e)
         {
@@ -260,7 +297,29 @@ namespace OutlookMockup
             MessageBox.Show("导入多个文件");
         }
 
-        private void DeleteFilesMenuItem_Click(object sender, EventArgs e)
+        private void DeleteFolderMenuItem_Click(object sender, EventArgs e)
+        {
+            // 处理删除多个文件的操作
+            // 可以弹出确认对话框等
+            if (MessageBox.Show("你想删除这个文件夹和文件夹下的文件吗？", "文件管理", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+            
+        }
+
+        private void DeleteFileMenuItem_Click(object sender, EventArgs e)
+        {
+            // 处理删除多个文件的操作
+            // 可以弹出确认对话框等
+            if (MessageBox.Show("你想删除这个文件吗？", "文件管理", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+
+        }
+
+        private void AddFolderMenuItem_Click(object sender, EventArgs e)
         {
             // 处理删除多个文件的操作
             // 可以弹出确认对话框等
@@ -268,8 +327,9 @@ namespace OutlookMockup
             {
                 return;
             }
-            
+
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             // Populate the different data table
@@ -277,7 +337,6 @@ namespace OutlookMockup
             //LoadDirectoryStructure(CurrentDirPath); // 你可以替换为你想要展示的文件夹路径
             LoadTreeView(CurrentDirPath);
         }
-       
 
     }
 }
