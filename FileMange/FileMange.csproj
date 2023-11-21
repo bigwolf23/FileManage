@@ -9,8 +9,8 @@
     <ProjectGuid>{9497EDA8-5D49-4708-825D-FA52C6FDB962}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OutlookMockup</RootNamespace>
-    <AssemblyName>OutlookMockup</AssemblyName>
+    <RootNamespace>FileManage</RootNamespace>
+    <AssemblyName>FileManage</AssemblyName>
     <ApplicationIcon>Krypton.ico</ApplicationIcon>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Bin\</OutputPath>
+    <OutputPath>..\Bin\</OutputPath>
     <BaseIntermediateOutputPath>../../../build/obj/$(AssemblyName)</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)/$(Configuration)/</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>

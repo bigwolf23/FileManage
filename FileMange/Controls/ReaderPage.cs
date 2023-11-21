@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OutlookMockup.Controls
+namespace FileManage.Controls
 {
     public partial class ReaderPage : KryptonPage
     {

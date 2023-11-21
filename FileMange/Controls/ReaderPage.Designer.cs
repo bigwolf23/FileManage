@@ -1,4 +1,4 @@
-﻿namespace OutlookMockup.Controls
+﻿namespace FileManage.Controls
 {
     partial class ReaderPage
     {

@@ -1,4 +1,4 @@
-﻿namespace OutlookMockup
+﻿namespace FileManage
 {
     partial class MainForm
     {
@@ -50,7 +50,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.refreshToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -241,7 +241,7 @@
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripButton,
+            this.refreshToolStripButton,
             this.openToolStripButton,
             this.saveToolStripButton,
             this.toolStripSeparator6,
@@ -251,18 +251,19 @@
             this.toolStripSeparator7});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(162, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(193, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // newToolStripButton
+            // refreshToolStripButton
             // 
-            this.newToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
-            this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.newToolStripButton.Text = "&New";
+            this.refreshToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.refreshToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("refreshToolStripButton.Image")));
+            this.refreshToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.refreshToolStripButton.Name = "refreshToolStripButton";
+            this.refreshToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.refreshToolStripButton.Text = "&New";
+            this.refreshToolStripButton.Click += new System.EventHandler(this.refreshToolStripButton_Click);
             // 
             // openToolStripButton
             // 
@@ -463,7 +464,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton newToolStripButton;
+        private System.Windows.Forms.ToolStripButton refreshToolStripButton;
         private System.Windows.Forms.ToolStripButton openToolStripButton;
         private System.Windows.Forms.ToolStripButton saveToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
