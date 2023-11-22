@@ -1,4 +1,6 @@
-﻿namespace FileManage.Controls
+﻿using System.Windows.Forms;
+
+namespace FileManage.Controls
 {
     partial class ReaderPage
     {
@@ -51,6 +53,9 @@
             this.richText_Reader.Size = new System.Drawing.Size(796, 571);
             this.richText_Reader.TabIndex = 0;
             this.richText_Reader.Text = "kryptonRichTextBox1";
+            richText_Reader.ShortcutsEnabled = true;
+            richText_Reader.Multiline = true;
+            richText_Reader.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richText_Reader_KeyDown);
             // 
             // ReaderPage
             // 

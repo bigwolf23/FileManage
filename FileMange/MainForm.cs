@@ -471,12 +471,12 @@ namespace FileManage
             }
         }
 
-        private void DeleteFolderFromTreeView(TreeNode folderNode)
+        private void DeleteFolderFromTreeView(TreeNode folderTreeNode)
         {
             // 获取父节点的node
-            FolderNode parentNode = GetParentFolderNode(folderNode);
+            FolderNode parentNode = GetParentFolderNode(folderTreeNode);
             // 获取要删除的文件夹节点的数据模型
-            FolderNode folderData = (FolderNode)folderNode.Tag;
+            FolderNode folderData = (FolderNode)folderTreeNode.Tag;
             try
             {
                 // 删除本地文件系统中的文件夹及其内容
@@ -492,16 +492,16 @@ namespace FileManage
             RemoveFolderFromDataModel(folderData, parentNode);
 
             // 从TreeView中移除节点
-            folderNode.Remove();
+            folderTreeNode.Remove();
         }
 
         private void RemoveFolderFromDataModel(FolderNode folderNode, FolderNode parentNode)
         {
             // 递归删除文件夹及其子文件夹和文件
-            foreach (FolderNode subFolder in folderNode.SubFolders)
-            {
-                RemoveFolderFromDataModel(subFolder,folderNode);
-            }
+            //foreach (FolderNode subFolder in folderNode.SubFolders)
+            //{
+            //    RemoveFolderFromDataModel(subFolder,folderNode);
+            //}
 
             // 从父文件夹的子文件夹列表中移除当前文件夹
             if (parentNode != null)
@@ -589,7 +589,7 @@ namespace FileManage
             // 假设选中的节点是文件夹节点
             TreeNode selectedNode = treeView_Dir.SelectedNode;
 
-            if (selectedNode != null && selectedNode.Tag is FolderNode)
+            if (selectedNode != null && selectedNode.Tag is FileNode)
             {
                 DeleteFileFromTreeView(selectedNode);
             }
@@ -668,6 +668,60 @@ namespace FileManage
         private void refreshToolStripButton_Click(object sender, EventArgs e)
         {
             RefreshTreeView();            
+        }
+
+        private void cutToolStripButton_Click(object sender, EventArgs e)
+        {
+            ReaderPage page = (ReaderPage)pageContainer_Reader.SelectedPage;
+            if (page != null)
+            {
+                page.CutText();
+            }            
+        }
+
+        private void copyToolStripButton_Click(object sender, EventArgs e)
+        {
+            ReaderPage page = (ReaderPage)pageContainer_Reader.SelectedPage;
+            if (page != null)
+            {
+                page.CopyText();
+            }
+        }
+
+        private void pasteToolStripButton_Click(object sender, EventArgs e)
+        {
+            ReaderPage page = (ReaderPage)pageContainer_Reader.SelectedPage;
+            if (page != null)
+            {
+                page.PasteText();
+            }
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReaderPage page = (ReaderPage)pageContainer_Reader.SelectedPage;
+            if (page != null)
+            {
+                page.CutText();
+            }
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReaderPage page = (ReaderPage)pageContainer_Reader.SelectedPage;
+            if (page != null)
+            {
+                page.CopyText();
+            }
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReaderPage page = (ReaderPage)pageContainer_Reader.SelectedPage;
+            if (page != null)
+            {
+                page.PasteText();
+            }
         }
     }
 }
