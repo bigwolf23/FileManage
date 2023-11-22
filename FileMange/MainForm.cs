@@ -62,7 +62,15 @@ namespace FileManage
         private void LoadTreeView(string rootPath)
         {
             rootFolderNode = CreateFolderNode(rootPath);
-            treeView_Dir.Nodes.Clear();
+            foreach (var item in treeView_Dir.Nodes)
+            {
+                TreeNode temp = (TreeNode)item;
+                if (temp.Parent == null)
+                {
+                    continue;
+                }
+                treeView_Dir.Nodes.Remove((TreeNode)item);
+            }
             treeView_Dir.Nodes.Add(CreateTreeNode(rootFolderNode));
         }
 
@@ -437,34 +445,36 @@ namespace FileManage
                 openFileDialog.Multiselect = true;
 
                 TreeNode treeNode = treeView_Dir.SelectedNode;
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (openFileDialog.ShowDialog() == DialogResult.Cancel)
                 {
-                    // 获取用户选择的文件路径数组
-                    string[] selectedFiles = openFileDialog.FileNames;
-                    bool bCopyFlag = PreCheckFileDuplicate(selectedFiles, treeNode);
-                    if (bCopyFlag == false)
+                    return;                   
+                }
+                // 获取用户选择的文件路径数组
+                string[] selectedFiles = openFileDialog.FileNames;
+                bool bCopyFlag = PreCheckFileDuplicate(selectedFiles, treeNode);
+                if (bCopyFlag == false)
+                {
+                    if (MessageBox.Show("文件夹下有重复的文件，你想覆盖吗？", "文件管理", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        if (MessageBox.Show("文件夹下有重复的文件，你想覆盖吗？", "文件管理", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-                            bCopyFlag = true;
-                        }
+                        bCopyFlag = true;
                     }
+                }
 
-                    // 处理选择的文件，可以根据需要进行操作
-                    if (bCopyFlag)
+                // 处理选择的文件，可以根据需要进行操作
+                if (bCopyFlag)
+                {
+                    foreach (string file in selectedFiles)
                     {
-                        foreach (string file in selectedFiles)
-                        {
-                            ImportFiles(file, treeNode);
-                        }
+                        ImportFiles(file, treeNode);
                     }
-                    
                 }
             }
         }
 
         private void DeleteFolderFromTreeView(TreeNode folderNode)
         {
+            // 获取父节点的node
+            FolderNode parentNode = GetParentFolderNode(folderNode);
             // 获取要删除的文件夹节点的数据模型
             FolderNode folderData = (FolderNode)folderNode.Tag;
             try
@@ -479,30 +489,55 @@ namespace FileManage
             }
             
             // 从数据模型中删除文件夹节点
-            RemoveFolderFromDataModel(folderData);
+            RemoveFolderFromDataModel(folderData, parentNode);
 
             // 从TreeView中移除节点
             folderNode.Remove();
         }
 
-        private void RemoveFolderFromDataModel(FolderNode folderNode)
+        private void RemoveFolderFromDataModel(FolderNode folderNode, FolderNode parentNode)
         {
             // 递归删除文件夹及其子文件夹和文件
             foreach (FolderNode subFolder in folderNode.SubFolders)
             {
-                RemoveFolderFromDataModel(subFolder);
+                RemoveFolderFromDataModel(subFolder,folderNode);
             }
+
+            // 从父文件夹的子文件夹列表中移除当前文件夹
+            if (parentNode != null)
+            {
+                parentNode.SubFolders.Remove(folderNode);
+            }
+            else
+            {
+                // 如果没有父节点，说明当前节点是根节点
+                // 在这个简化示例中，可以在根节点列表中移除
+                //rootFolderNodes.Remove(folderNode);
+            }
+        }
+
+        private FolderNode GetParentFolderNode(TreeNode node)
+        {
+            // 获取父节点
+            TreeNode parentNode = node.Parent;
+
+            // 获取文件夹节点的数据模型
+            return parentNode?.Tag as FolderNode;
         }
 
         private void DeleteFolderMenuItem_Click(object sender, EventArgs e)
         {
+            // 假设选中的节点是文件夹节点
+            TreeNode selectedNode = treeView_Dir.SelectedNode;
+            if (selectedNode.Parent == null)
+            {
+                MessageBox.Show("这是根文件目录，无法删除");
+                return;
+            }
             // 处理删除多个文件的操作
             // 可以弹出确认对话框等
             if (MessageBox.Show("你想删除这个文件夹和文件夹下的文件吗？", "文件管理", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                // 假设选中的节点是文件夹节点
-                TreeNode selectedNode = treeView_Dir.SelectedNode;
-
+            {               
                 if (selectedNode != null && selectedNode.Tag is FolderNode)
                 {
                     DeleteFolderFromTreeView(selectedNode);
@@ -531,11 +566,17 @@ namespace FileManage
                 return;
             }
 
-            // 从数据模型中删除文件夹节点
-            //RemoveFolderFromDataModel(fileNode);
+            // 从数据模型中删除文件夹节点            
+            RemoveFileFromDataModel(fileData, GetParentFolderNode(fileNode));
 
             // 从TreeView中移除节点
             fileNode.Remove();
+        }
+
+        private void RemoveFileFromDataModel(FileNode fileNode, FolderNode parentNode)
+        {
+            // 递归删除文件夹及其子文件夹和文件
+            parentNode.DeleteFile(fileNode);            
         }
         private void DeleteFileMenuItem_Click(object sender, EventArgs e)
         {
