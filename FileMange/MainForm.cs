@@ -49,8 +49,6 @@ namespace FileManage
             treeView_Dir.AfterLabelEdit += treeView_Dir_AfterLabelEdit;
             treeView_Dir.AfterSelect += treeView_Dir_AfterSelect;
             treeView_Dir.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_Dir_NodeMouseClick);
-            //pageContainer_Reader.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pageContainer_Reader_MouseClick);
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -119,7 +117,7 @@ namespace FileManage
         }
 
 
-        private void AddPage(string fileName,string fileContent)
+        private void AddPage(string fileName,string filePath,string fileContent)
         {
             ReaderPage newPage = new ReaderPage();
             newPage.Text = fileName;
@@ -137,6 +135,7 @@ namespace FileManage
             if (findPages == false)
             {
                 newPage.SetRichEditContent(fileContent);
+                newPage.SetRichEditFilePath(filePath);
                 pageContainer_Reader.Pages.Add(newPage);
                 pageContainer_Reader.SelectedPage = newPage;
             }                     
@@ -156,7 +155,7 @@ namespace FileManage
                 try
                 {
                     string fileContent = File.ReadAllText(fileNode.Path);
-                    AddPage(e.Node.Text,fileContent);                    
+                    AddPage(e.Node.Text, fileNode.Path, fileContent);                    
                 }
                 catch (Exception ex)
                 {
@@ -729,27 +728,27 @@ namespace FileManage
             }
         }
 
-        private void pageContainer_Reader_MouseClick(object sender, MouseEventArgs e)
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Middle)
+            ReaderPage page = (ReaderPage)pageContainer_Reader.SelectedPage;
+            if (page != null)
             {
-                // 获取中间滚轮点击的坐标
-                Point middleClickPoint = new Point(e.X, e.Y);
-
-                // 遍历选项卡页，检查中间滚轮点击是否在关闭按钮的范围内
-                for (int i = 0; i < pageContainer_Reader.Pages.Count; i++)
-                {
-                    Rectangle tabRect = pageContainer_Reader.Pages[i].DisplayRectangle;
-                    //tabRect.Inflate(-2, -2); // 调整范围以便更容易点击
-
-                    if (tabRect.Contains(middleClickPoint))
-                    {
-                        // 在这里执行关闭选项卡页的操作
-                        pageContainer_Reader.Pages.RemoveAt(i);
-                        break;
-                    }
-                }
+                page.SelectAllText();
             }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReaderPage page = (ReaderPage)pageContainer_Reader.SelectedPage;
+            if (page != null)
+            {
+                page.SaveText();
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

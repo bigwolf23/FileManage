@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,13 +15,20 @@ namespace FileManage.Controls
 {
     public partial class ReaderPage : KryptonPage
     {
+        private string _filePath = string.Empty;
         private ContextMenuStrip contextMenuStrip1;
         public ReaderPage()
         {
             InitializeComponent();
             InitRichTextBoxContextMenu();
         }
-        
+        public void SetRichEditFilePath(string filePath)
+        {
+            if (_filePath != null)
+            {
+                _filePath = filePath;
+            }
+        }
 
         public void SetRichEditContent(string fileContent)
         {
@@ -37,7 +45,6 @@ namespace FileManage.Controls
 
         private void richText_Reader_KeyDown(object sender, KeyEventArgs e)
         {
-
             // 处理 Ctrl+C（复制）
             if (e.Control && e.KeyCode == Keys.C)
             {
@@ -53,6 +60,11 @@ namespace FileManage.Controls
             if (e.Control && e.KeyCode == Keys.X)
             {
                 CutText();
+            }
+
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                SaveText();
             }
         }
         // 复制文本
@@ -78,6 +90,31 @@ namespace FileManage.Controls
             if (richText_Reader.SelectionLength > 0)
             {
                 richText_Reader.Cut();
+            }
+        }
+
+        public void SelectAllText()
+        {
+            richText_Reader.Focus();
+            richText_Reader.SelectAll();
+        }
+
+        public void SaveText()
+        {
+            if (File.Exists(_filePath))
+            {
+                try
+                {
+                    // 使用 StreamWriter 将内容写入文件
+                    using (StreamWriter writer = new StreamWriter(_filePath))
+                    {
+                        writer.Write(richText_Reader.Text);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("文件存储失败：{0}", ex.Message);
+                }
             }
         }
 
