@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -51,7 +49,6 @@
             this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.kryptonPanelMain = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonSplitContainerMain = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
@@ -84,73 +81,56 @@
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1135, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(927, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.openToolStripMenuItem,
             this.toolStripSeparator,
             this.saveToolStripMenuItem,
             this.toolStripSeparator1,
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
-            this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.newToolStripMenuItem.Text = "&New";
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
-            this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.openToolStripMenuItem.Text = "&Open";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(49, 23);
+            this.fileToolStripMenuItem.Text = "文件";
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(177, 6);
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.saveToolStripMenuItem.Text = "保存";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
+            this.exitToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.exitToolStripMenuItem.Text = "退出";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
@@ -161,38 +141,42 @@
             this.pasteToolStripMenuItem,
             this.toolStripSeparator4,
             this.selectAllToolStripMenuItem});
+            this.editToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 23);
+            this.editToolStripMenuItem.Text = "编辑";
             // 
             // cutToolStripMenuItem
             // 
+            this.cutToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
             this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cutToolStripMenuItem.Text = "Cu&t";
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.cutToolStripMenuItem.Text = "剪切";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // copyToolStripMenuItem
             // 
+            this.copyToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
             this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.copyToolStripMenuItem.Text = "&Copy";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.copyToolStripMenuItem.Text = "拷贝";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // pasteToolStripMenuItem
             // 
+            this.pasteToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.pasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem.Image")));
             this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.pasteToolStripMenuItem.Text = "&Paste";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.pasteToolStripMenuItem.Text = "粘贴";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
@@ -202,42 +186,45 @@
             // 
             // selectAllToolStripMenuItem
             // 
+            this.selectAllToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.selectAllToolStripMenuItem.Text = "Select &All";
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.selectAllToolStripMenuItem.Text = "全选";
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshToolStripButton,
             this.toolStripSeparator6,
             this.cutToolStripButton,
             this.copyToolStripButton,
-            this.pasteToolStripButton,
-            this.toolStripSeparator7});
+            this.pasteToolStripButton});
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(116, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(114, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // refreshToolStripButton
             // 
             this.refreshToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.refreshToolStripButton.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.refreshToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("refreshToolStripButton.Image")));
             this.refreshToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.refreshToolStripButton.Name = "refreshToolStripButton";
-            this.refreshToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.refreshToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.refreshToolStripButton.Text = "&New";
             this.refreshToolStripButton.Click += new System.EventHandler(this.refreshToolStripButton_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 27);
             // 
             // cutToolStripButton
             // 
@@ -245,7 +232,7 @@
             this.cutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton.Image")));
             this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripButton.Name = "cutToolStripButton";
-            this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.cutToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.cutToolStripButton.Text = "C&ut";
             this.cutToolStripButton.Click += new System.EventHandler(this.cutToolStripButton_Click);
             // 
@@ -255,7 +242,7 @@
             this.copyToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripButton.Image")));
             this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripButton.Name = "copyToolStripButton";
-            this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.copyToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.copyToolStripButton.Text = "&Copy";
             this.copyToolStripButton.Click += new System.EventHandler(this.copyToolStripButton_Click);
             // 
@@ -265,14 +252,9 @@
             this.pasteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripButton.Image")));
             this.pasteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripButton.Name = "pasteToolStripButton";
-            this.pasteToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.pasteToolStripButton.Size = new System.Drawing.Size(24, 24);
             this.pasteToolStripButton.Text = "&Paste";
             this.pasteToolStripButton.Click += new System.EventHandler(this.pasteToolStripButton_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripContainer1
             // 
@@ -280,13 +262,13 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.kryptonPanelMain);
-            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1135, 565);
+            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(927, 583);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
-            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 29);
+            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1135, 590);
+            this.toolStripContainer1.Size = new System.Drawing.Size(927, 610);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -299,10 +281,10 @@
             this.kryptonPanelMain.Controls.Add(this.kryptonSplitContainerMain);
             this.kryptonPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.kryptonPanelMain.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.kryptonPanelMain.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.kryptonPanelMain.Name = "kryptonPanelMain";
-            this.kryptonPanelMain.Padding = new System.Windows.Forms.Padding(5);
-            this.kryptonPanelMain.Size = new System.Drawing.Size(1135, 565);
+            this.kryptonPanelMain.Padding = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.kryptonPanelMain.Size = new System.Drawing.Size(927, 583);
             this.kryptonPanelMain.TabIndex = 0;
             // 
             // kryptonSplitContainerMain
@@ -310,8 +292,8 @@
             this.kryptonSplitContainerMain.Cursor = System.Windows.Forms.Cursors.Default;
             this.kryptonSplitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonSplitContainerMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.kryptonSplitContainerMain.Location = new System.Drawing.Point(5, 5);
-            this.kryptonSplitContainerMain.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.kryptonSplitContainerMain.Location = new System.Drawing.Point(6, 7);
+            this.kryptonSplitContainerMain.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.kryptonSplitContainerMain.Name = "kryptonSplitContainerMain";
             // 
             // kryptonSplitContainerMain.Panel1
@@ -321,7 +303,7 @@
             // kryptonSplitContainerMain.Panel2
             // 
             this.kryptonSplitContainerMain.Panel2.Controls.Add(this.pageContainer_Reader);
-            this.kryptonSplitContainerMain.Size = new System.Drawing.Size(1125, 555);
+            this.kryptonSplitContainerMain.Size = new System.Drawing.Size(915, 569);
             this.kryptonSplitContainerMain.SplitterDistance = 183;
             this.kryptonSplitContainerMain.TabIndex = 0;
             // 
@@ -331,10 +313,12 @@
             this.treeView_Dir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_Dir.ImageIndex = 0;
             this.treeView_Dir.ImageList = this.imageList1;
+            this.treeView_Dir.ItemHeight = 30;
             this.treeView_Dir.Location = new System.Drawing.Point(0, 0);
+            this.treeView_Dir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.treeView_Dir.Name = "treeView_Dir";
             this.treeView_Dir.SelectedImageIndex = 0;
-            this.treeView_Dir.Size = new System.Drawing.Size(183, 555);
+            this.treeView_Dir.Size = new System.Drawing.Size(183, 569);
             this.treeView_Dir.TabIndex = 0;
             // 
             // imageList1
@@ -348,8 +332,10 @@
             // 
             this.pageContainer_Reader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageContainer_Reader.Location = new System.Drawing.Point(0, 0);
+            this.pageContainer_Reader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pageContainer_Reader.Name = "pageContainer_Reader";
-            this.pageContainer_Reader.Size = new System.Drawing.Size(937, 555);
+            this.pageContainer_Reader.NavigatorMode = ComponentFactory.Krypton.Navigator.NavigatorMode.BarCheckButtonGroupOutside;
+            this.pageContainer_Reader.Size = new System.Drawing.Size(727, 569);
             this.pageContainer_Reader.TabIndex = 1;
             this.pageContainer_Reader.Text = "kryptonNavigator1";
             // 
@@ -359,18 +345,19 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 614);
+            this.ClientSize = new System.Drawing.Size(927, 639);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MinimumSize = new System.Drawing.Size(484, 370);
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.MinimumSize = new System.Drawing.Size(618, 473);
             this.Name = "MainForm";
-            this.Text = "文件管理";
+            this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            this.Text = "目标特性库";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -405,7 +392,6 @@
         private System.Windows.Forms.ToolStripButton cutToolStripButton;
         private System.Windows.Forms.ToolStripButton copyToolStripButton;
         private System.Windows.Forms.ToolStripButton pasteToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanelMain;
         private ComponentFactory.Krypton.Toolkit.KryptonSplitContainer kryptonSplitContainerMain;
@@ -414,8 +400,6 @@
         private ComponentFactory.Krypton.Navigator.KryptonNavigator pageContainer_Reader;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

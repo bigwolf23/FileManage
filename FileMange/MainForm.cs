@@ -44,7 +44,7 @@ namespace FileManage
 
         private void initialForm()
         {
-            kryptonManager.GlobalPaletteMode = PaletteModeManager.ProfessionalSystem;
+            kryptonManager.GlobalPaletteMode = PaletteModeManager.Office2010Black;
             treeView_Dir.LabelEdit = true;
             treeView_Dir.AfterLabelEdit += treeView_Dir_AfterLabelEdit;
             treeView_Dir.AfterSelect += treeView_Dir_AfterSelect;
@@ -333,7 +333,7 @@ namespace FileManage
         {
             folderContextMenuStrip = new ContextMenuStrip();
             ToolStripMenuItem importFilesMenuItem = new ToolStripMenuItem("导入文件");
-            ToolStripMenuItem addFolderMenuItem = new ToolStripMenuItem("新加文件夹");
+            ToolStripMenuItem addFolderMenuItem = new ToolStripMenuItem("新建文件夹");
             ToolStripMenuItem deleteFolderMenuItem = new ToolStripMenuItem("删除文件夹");
 
             importFilesMenuItem.Click += ImportFilesMenuItem_Click;
@@ -435,7 +435,7 @@ namespace FileManage
             catch (Exception ex)
             {
                 // 处理异常，例如显示错误消息
-                Console.WriteLine($"Error importing folder: {ex.Message}");
+                //Console.WriteLine($"Error importing folder: {ex.Message}");
             }
         }
 
