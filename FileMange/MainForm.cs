@@ -49,6 +49,8 @@ namespace FileManage
             treeView_Dir.AfterLabelEdit += treeView_Dir_AfterLabelEdit;
             treeView_Dir.AfterSelect += treeView_Dir_AfterSelect;
             treeView_Dir.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_Dir_NodeMouseClick);
+            //pageContainer_Reader.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pageContainer_Reader_MouseClick);
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -61,17 +63,20 @@ namespace FileManage
 
         private void LoadTreeView(string rootPath)
         {
+            treeView_Dir.BeginUpdate(); // 开始更新
             rootFolderNode = CreateFolderNode(rootPath);
-            foreach (var item in treeView_Dir.Nodes)
-            {
-                TreeNode temp = (TreeNode)item;
-                if (temp.Parent == null)
-                {
-                    continue;
-                }
-                treeView_Dir.Nodes.Remove((TreeNode)item);
-            }
+            treeView_Dir.Nodes.Clear();
+            //foreach (var item in treeView_Dir.Nodes)
+            //{
+            //    KryptonTreeNode temp = (KryptonTreeNode)item;
+            //    if (temp.Parent == null)
+            //    {
+            //        continue;
+            //    }
+            //    treeView_Dir.Nodes.Remove((KryptonTreeNode)item);
+            //}
             treeView_Dir.Nodes.Add(CreateTreeNode(rootFolderNode));
+            treeView_Dir.EndUpdate(); // 结束更新
         }
 
         private KryptonTreeNode CreateTreeNode(FolderNode folderNode)
@@ -721,6 +726,29 @@ namespace FileManage
             if (page != null)
             {
                 page.PasteText();
+            }
+        }
+
+        private void pageContainer_Reader_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+            {
+                // 获取中间滚轮点击的坐标
+                Point middleClickPoint = new Point(e.X, e.Y);
+
+                // 遍历选项卡页，检查中间滚轮点击是否在关闭按钮的范围内
+                for (int i = 0; i < pageContainer_Reader.Pages.Count; i++)
+                {
+                    Rectangle tabRect = pageContainer_Reader.Pages[i].DisplayRectangle;
+                    //tabRect.Inflate(-2, -2); // 调整范围以便更容易点击
+
+                    if (tabRect.Contains(middleClickPoint))
+                    {
+                        // 在这里执行关闭选项卡页的操作
+                        pageContainer_Reader.Pages.RemoveAt(i);
+                        break;
+                    }
+                }
             }
         }
     }
